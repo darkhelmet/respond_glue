@@ -1,13 +1,30 @@
-RespondGlue
-===========
+# respond_glue
 
-Introduction goes here.
+Inherit and override respond_to
 
+# Example
 
-Example
-=======
+    ./script/plugin install git://github.com/darkhelmet/respond_glue.git
 
-Example goes here.
+In your parent controller
 
+    include RespondGlue
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+    def index
+      do_some_magic
+      respond_glue(:html) { # render something }
+      respond_glue(:js) { render(:json => @something) }
+    end
+
+In your child controller
+
+   def index
+     super
+     respond_glue(:js) { render(:json => { :data => @something, :something => 1 }) }
+   end
+
+   glue_for(:index)
+
+# License
+
+See LICENSE for details

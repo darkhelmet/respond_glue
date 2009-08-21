@@ -1,1 +1,3 @@
-# Include hook code here
+require 'respond_glue'
+
+ActionController::Base.send(:include, RespondGlue)
