@@ -25,8 +25,7 @@ module RespondGlue
 
     def superglue_for(*actions)
       actions.each do |a|
-        define_method(a) { super }
-        glue_for(a)
+        glue_for(a) { }
       end
     end
   end
