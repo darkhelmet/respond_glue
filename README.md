@@ -25,6 +25,10 @@ In your child controller
 
    glue_for(:index)
 
+And for all actions where you want the default action
+
+    superglue_for(:show,create,:update)
+
 # License
 
 See LICENSE for details

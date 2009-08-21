@@ -13,6 +13,13 @@ module RespondGlue
         end
       end
     end
+
+    def superglue_for(*actions)
+      actions.each do |a|
+        define_method(a) { super }
+        glue_for(a)
+      end
+    end
   end
 
   def respond_glue(format = nil)
