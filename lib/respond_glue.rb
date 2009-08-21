@@ -29,9 +29,11 @@ module RespondGlue
   end
 
   def glue
-    respond_to do |format|
-      respond_glue.each do |k,v|
-        format.send(k,&v)
+    unless respond_glue.empty?
+      respond_to do |format|
+        respond_glue.each do |k,v|
+          format.send(k,&v)
+        end
       end
     end
   end
