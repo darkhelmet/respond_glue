@@ -18,12 +18,12 @@ In your parent controller
 
 In your child controller
 
-   def index
-     super
-     respond_glue(:js) { render(:json => { :data => @something, :something => 1 }) }
-   end
+    def index
+      super
+      respond_glue(:js) { render(:json => { :data => @something, :something => 1 }) }
+    end
 
-   glue_for(:index)
+    glue_for(:index)
 
 And for all actions where you want the default action
 
