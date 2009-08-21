@@ -25,9 +25,15 @@ In your child controller
 
     glue_for(:index)
 
-And for all actions where you want the default action
+And for all actions where you want whatever is defined in the superclass. If nothing is explicitly defined, you don't need this.
 
     superglue_for(:show,create,:update)
+
+glue_for can also take a block, which is called after calling 'super'
+
+    glue_for(:index) do
+      respond_glue(:js) { render(:json => { :data => @something, :something => 1 }) }
+    end
 
 # License
 

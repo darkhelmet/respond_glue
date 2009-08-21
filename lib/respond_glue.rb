@@ -5,11 +5,20 @@ module RespondGlue
 
   module ClassMethods
     def glue_for(*actions)
+      blk = block_given? ? Proc.new : nil
       actions.each do |a|
-        alias_method "#{a}_original", a
-        define_method(a) do
-          eval("#{a}_original")
-          glue
+        if blk.nil?
+          alias_method("#{a}_original", a)
+          define_method(a) do
+            eval("#{a}_original")
+            glue
+          end
+        else
+          define_method(a) do
+            super
+            instance_eval(&blk)
+            glue
+          end
         end
       end
     end
