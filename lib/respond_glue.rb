@@ -39,9 +39,14 @@ module RespondGlue
   def glue
     unless respond_glue.empty?
       respond_to do |format|
+        if html = respond_glue.delete(:html)
+          format.html(&html)
+        end
+        any = respond_glue.delete(:any)
         respond_glue.each do |k,v|
           format.send(k,&v)
         end
+        format.any(&any) if any
       end
     end
   end
